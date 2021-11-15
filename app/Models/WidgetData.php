@@ -26,7 +26,7 @@ class WidgetData extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function widget(): BelongsTo
+    public function widget()
     {
         return $this->belongsTo(Widget::class);
     }

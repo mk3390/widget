@@ -26,7 +26,7 @@ class Widget extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -36,7 +36,7 @@ class Widget extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function WidgetConfig(): HasMany
+    public function WidgetConfig()
     {
         return $this->hasMany(WidgetConfig::class);
     }
@@ -46,7 +46,7 @@ class Widget extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function widgetData(): HasMany
+    public function widgetData()
     {
         return $this->hasMany(widgetData::class);
     }
