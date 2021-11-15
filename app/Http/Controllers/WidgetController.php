@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Widget;
 use Illuminate\Support\Str;
+use App\Models\WidgetConfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -51,7 +52,7 @@ class WidgetController extends Controller
         $data = $request->data;
         foreach($data as $widgetData)
         {
-            $widget->WidgetConfig()->create(['widget_id'=>$widget->id,'data'=>$widgetData]);
+            WidgetConfig::create(['widget_id'=>$widget->id,'data'=>$widgetData]);
         }
         if($widget){
             $success['user'] =  $widget;
