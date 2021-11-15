@@ -25,6 +25,7 @@ Route::group([ 'prefix' => 'auth'], function (){
     });
 });
 Route::post('widget/create','WidgetController@store');
+Route::get('widget/{id}','WidgetController@show');
 // Route::post('donation/find','DonationRequestController@store');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

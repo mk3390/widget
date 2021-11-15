@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Widget;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class WidgetController extends Controller
 {
@@ -44,7 +46,13 @@ class WidgetController extends Controller
         }
 
         $input = $request->all();
-        $widget = Widget::create($input);
+        $input['uuid'] = (string) Str::uuid();
+        $widget = Widget::create($input->except('data'));
+        $data = $request->data;
+        foreach($data as $widgetData)
+        {
+            $widget->WidgetConfig()->create(['widget_id'=>$widget->id,'data'=>$widgetData]);
+        }
         if($widget){
             $success['user'] =  $widget;
             $success['message'] = "Widget created..";
@@ -62,9 +70,18 @@ class WidgetController extends Controller
      * @param  \App\Models\Widget  $widget
      * @return \Illuminate\Http\Response
      */
-    public function show(Widget $widget)
+    public function show(Request $request,$id)
     {
-        //
+        $widget = Widget::with('WidgetConfig')->where('uuid',$id)->first();
+        if($widget){
+            $success['user'] =  $widget;
+            $success['message'] = "Widget created..";
+            return $this->sendResponse($success);
+        }
+        else{
+            $error = "Unable to create widget.";
+            return $this->apiResponse($error, 401);
+        }
     }
 
     /**
