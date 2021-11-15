@@ -52,7 +52,7 @@ class WidgetController extends Controller
         $data = $request->data;
         foreach($data as $widgetData)
         {
-            WidgetConfig::create(['widget_id'=>$widget->id,'data'=>$widgetData]);
+            WidgetConfig::create(['widget_id'=>$widget->id,'data'=>json_encode($widgetData)]);
         }
         if($widget){
             $success['user'] =  $widget;
