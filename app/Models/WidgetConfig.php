@@ -16,8 +16,11 @@ class WidgetConfig extends Model
      */
     protected $fillable = [
         'widget_id',
-        'data',
-        'is_completed'
+        'text',
+        'validation',
+        'validation_message',
+        'type',
+        'value',
     ];
     /**
      * Get the widget that owns the WidgetConfig
