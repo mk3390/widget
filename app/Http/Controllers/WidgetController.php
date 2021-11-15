@@ -83,7 +83,7 @@ class WidgetController extends Controller
         if($widget){
             $success['user'] =  $widget;
             $success['message'] = "Widget created..";
-            return $this->sendResponse($success);
+            return $this->apiResponse($success);
         }
         else{
             $error = "Unable to create widget.";
