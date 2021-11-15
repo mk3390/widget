@@ -54,12 +54,11 @@ class WidgetController extends Controller
         {
             WidgetConfig::create([
                 'widget_id'=>$widget->id,
-                'text'=>($widgetData->label)?$widgetData->label:"",
-                'text'=>($widgetData->type)?$widgetData->type:"",
-                'text'=>($widgetData->validation)?$widgetData->validation:"",
-                'text'=>($widgetData->validation_message)?$widgetData->validation_message:"",
-                'text'=>(count($widgetData->noOfQuestions)>0)?json_encode($widgetData->noOfQuestions):"",
-                'data'=>json_encode($widgetData)]);
+                'text'=>($widgetData['label'])?$widgetData['label']:"",
+                'type'=>($widgetData['type'])?$widgetData['type']:"",
+                'validation'=>($widgetData['validation'])?$widgetData['validation']:"",
+                'validation_message'=>($widgetData['validation_message'])?$widgetData['validation_message']:"",
+                'value'=>(count($widgetData['noOfQuestions'])>0)?json_encode($widgetData['noOfQuestions']):""]);
         }
         if($widget){
             $success['user'] =  $widget;
