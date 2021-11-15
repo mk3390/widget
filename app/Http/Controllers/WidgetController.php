@@ -45,9 +45,9 @@ class WidgetController extends Controller
             return $this->apiResponse($validator->errors(),401);
         }
 
-        $input = $request->all();
+        $input = $request->except('data');
         $input['uuid'] = (string) Str::uuid();
-        $widget = Widget::create($input->except('data'));
+        $widget = Widget::create($input);
         $data = $request->data;
         foreach($data as $widgetData)
         {
